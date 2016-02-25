@@ -5,7 +5,7 @@
     Dim songAlbum As String
     Dim songDuration As String
     Dim songMP3URL As String
-
+    Dim songMVID As String
     Dim songID As String
     Dim songName As String
     Dim songSize As String
@@ -16,9 +16,10 @@
     Dim songSR As String
 
 
+
     Public Sub New(ByVal songMainID As String, ByVal songMainName As String, ByVal songArtists As List(Of String), ByVal songAlbum As String, ByVal songDuration As String,
                    ByVal songMP3URL As String, ByVal songID As String, ByVal songName As String, ByVal songSize As String, ByVal songExtension As String, ByVal songdfsID As String,
-                   ByVal songPlaytime As String, ByVal songBitrate As String, ByVal songSR As String)
+                   ByVal songPlaytime As String, ByVal songBitrate As String, ByVal songSR As String, ByVal songMVID As String)
 
         Me.songMainID = songMainID
         Me.songMainName = songMainName
@@ -26,7 +27,7 @@
         Me.songAlbum = songAlbum
         Me.songDuration = songDuration
         Me.songMP3URL = songMP3URL
-
+        Me.songMVID = songMVID
         Me.songID = songID
         Me.songName = songName
         Me.songSize = songSize
@@ -88,5 +89,7 @@
     Public Function getSongSR() As String
         Return Me.songSR
     End Function
-
+    Public Function getSongMVID() As String
+        Return Me.songMVID
+    End Function
 End Class

@@ -1,0 +1,25 @@
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\NetEase Player.exe.config
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\NetEase Player.exe
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\NetEase Player.pdb
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\NetEase Player.xml
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase_Player.Form1.resources
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase_Player.Resources.resources
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase Player.vbproj.GenerateResource.Cache
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase Player.exe
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase Player.xml
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase Player.pdb
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\Newtonsoft.Json.dll
+c:\users\leonard\documents\visual studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\Interop.WMPLib.dll
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\Interop.WMPLib.dll
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase Player.vbproj.ResolveComReference.cache
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\CSCore.dll
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\CSCore.xml
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase_Player.MusicVideoForm.resources
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase_Player.Form_SpotifyRip.resources
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\SpotifyAPI.dll
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\bin\Debug\SpotifyAPI.xml
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase_Player.MiniPlayer.resources
+C:\Users\Leonard\Documents\Visual Studio 2015\Projects\NetEase Player\NetEase Player\obj\Debug\NetEase Player.vbprojResolveAssemblyReference.cache
