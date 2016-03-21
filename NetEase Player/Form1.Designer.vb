@@ -71,6 +71,7 @@ Partial Class Form1
         Me.btn_readdfromcache = New System.Windows.Forms.Button()
         Me.chb_useproxy = New System.Windows.Forms.CheckBox()
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
+        Me.chb_repeatplaylist = New System.Windows.Forms.CheckBox()
         CType(Me.nup_limit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -94,7 +95,7 @@ Partial Class Form1
         Me.lvw_Songs.Location = New System.Drawing.Point(12, 38)
         Me.lvw_Songs.MultiSelect = False
         Me.lvw_Songs.Name = "lvw_Songs"
-        Me.lvw_Songs.Size = New System.Drawing.Size(619, 474)
+        Me.lvw_Songs.Size = New System.Drawing.Size(619, 492)
         Me.lvw_Songs.TabIndex = 4
         Me.lvw_Songs.UseCompatibleStateImageBehavior = False
         Me.lvw_Songs.View = System.Windows.Forms.View.Details
@@ -156,7 +157,7 @@ Partial Class Form1
         '
         'btn_dlsong
         '
-        Me.btn_dlsong.Location = New System.Drawing.Point(12, 518)
+        Me.btn_dlsong.Location = New System.Drawing.Point(12, 536)
         Me.btn_dlsong.Name = "btn_dlsong"
         Me.btn_dlsong.Size = New System.Drawing.Size(75, 23)
         Me.btn_dlsong.TabIndex = 9
@@ -184,7 +185,7 @@ Partial Class Form1
         '
         'btn_dlplay
         '
-        Me.btn_dlplay.Location = New System.Drawing.Point(93, 518)
+        Me.btn_dlplay.Location = New System.Drawing.Point(93, 536)
         Me.btn_dlplay.Name = "btn_dlplay"
         Me.btn_dlplay.Size = New System.Drawing.Size(131, 23)
         Me.btn_dlplay.TabIndex = 12
@@ -195,7 +196,7 @@ Partial Class Form1
         '
         Me.lbl_position.AutoSize = True
         Me.lbl_position.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_position.Location = New System.Drawing.Point(16, 578)
+        Me.lbl_position.Location = New System.Drawing.Point(16, 596)
         Me.lbl_position.Name = "lbl_position"
         Me.lbl_position.Size = New System.Drawing.Size(106, 16)
         Me.lbl_position.TabIndex = 13
@@ -252,7 +253,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.btn_dlrepair)
         Me.GroupBox1.Controls.Add(Me.btn_delfromplaylist)
         Me.GroupBox1.Controls.Add(Me.btn_exportfromplaylist)
-        Me.GroupBox1.Location = New System.Drawing.Point(637, 441)
+        Me.GroupBox1.Location = New System.Drawing.Point(637, 459)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(159, 71)
         Me.GroupBox1.TabIndex = 19
@@ -276,7 +277,7 @@ Partial Class Form1
         Me.FlowLayoutPanel1.Controls.Add(Me.lbl_artist)
         Me.FlowLayoutPanel1.Controls.Add(Me.Label2)
         Me.FlowLayoutPanel1.Controls.Add(Me.lbl_album)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 548)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 566)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(784, 27)
         Me.FlowLayoutPanel1.TabIndex = 20
@@ -333,7 +334,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(185, 577)
+        Me.Button1.Location = New System.Drawing.Point(185, 595)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 19)
         Me.Button1.TabIndex = 21
@@ -347,7 +348,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.lbl_infosize)
         Me.GroupBox2.Controls.Add(Me.lbl_infobitrate)
         Me.GroupBox2.Controls.Add(Me.lbl_infoffline)
-        Me.GroupBox2.Location = New System.Drawing.Point(637, 340)
+        Me.GroupBox2.Location = New System.Drawing.Point(637, 358)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(159, 95)
         Me.GroupBox2.TabIndex = 22
@@ -401,7 +402,7 @@ Partial Class Form1
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(590, 590)
+        Me.Label4.Location = New System.Drawing.Point(590, 608)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(206, 13)
         Me.Label4.TabIndex = 23
@@ -410,7 +411,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(255, 518)
+        Me.Button2.Location = New System.Drawing.Point(255, 536)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(101, 23)
         Me.Button2.TabIndex = 24
@@ -468,11 +469,11 @@ Partial Class Form1
         '
         'btn_readdfromcache
         '
-        Me.btn_readdfromcache.Location = New System.Drawing.Point(637, 519)
+        Me.btn_readdfromcache.Location = New System.Drawing.Point(637, 537)
         Me.btn_readdfromcache.Name = "btn_readdfromcache"
         Me.btn_readdfromcache.Size = New System.Drawing.Size(125, 23)
         Me.btn_readdfromcache.TabIndex = 30
-        Me.btn_readdfromcache.Text = "Readd from Cache"
+        Me.btn_readdfromcache.Text = "Re-Add from Cache"
         Me.btn_readdfromcache.UseVisualStyleBackColor = True
         '
         'chb_useproxy
@@ -480,7 +481,7 @@ Partial Class Form1
         Me.chb_useproxy.AutoSize = True
         Me.chb_useproxy.Checked = True
         Me.chb_useproxy.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chb_useproxy.Location = New System.Drawing.Point(558, 522)
+        Me.chb_useproxy.Location = New System.Drawing.Point(558, 540)
         Me.chb_useproxy.Name = "chb_useproxy"
         Me.chb_useproxy.Size = New System.Drawing.Size(52, 17)
         Me.chb_useproxy.TabIndex = 31
@@ -491,18 +492,31 @@ Partial Class Form1
         '
         Me.AxWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(0, 606)
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(0, 624)
         Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
         Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(802, 45)
         Me.AxWindowsMediaPlayer1.TabIndex = 3
+        '
+        'chb_repeatplaylist
+        '
+        Me.chb_repeatplaylist.AutoSize = True
+        Me.chb_repeatplaylist.Checked = True
+        Me.chb_repeatplaylist.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chb_repeatplaylist.Location = New System.Drawing.Point(637, 340)
+        Me.chb_repeatplaylist.Name = "chb_repeatplaylist"
+        Me.chb_repeatplaylist.Size = New System.Drawing.Size(56, 17)
+        Me.chb_repeatplaylist.TabIndex = 32
+        Me.chb_repeatplaylist.Text = "repeat"
+        Me.chb_repeatplaylist.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AcceptButton = Me.btn_searchQuery
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(802, 651)
+        Me.ClientSize = New System.Drawing.Size(802, 669)
+        Me.Controls.Add(Me.chb_repeatplaylist)
         Me.Controls.Add(Me.chb_useproxy)
         Me.Controls.Add(Me.btn_readdfromcache)
         Me.Controls.Add(Me.chb_miniplayerifminized)
@@ -530,6 +544,7 @@ Partial Class Form1
         Me.Controls.Add(Me.btn_searchQuery)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -593,4 +608,5 @@ Partial Class Form1
     Friend WithEvents chb_miniplayerifminized As CheckBox
     Friend WithEvents btn_readdfromcache As Button
     Friend WithEvents chb_useproxy As CheckBox
+    Friend WithEvents chb_repeatplaylist As CheckBox
 End Class

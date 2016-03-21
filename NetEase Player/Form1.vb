@@ -13,6 +13,7 @@ Imports WMPLib
 Imports System.Runtime.InteropServices
 
 Public Class Form1
+    Private WithEvents _Hotkey As New Hotkey
     Dim play As WMPLib.IWMPPlaylist
     Dim med As WMPLib.IWMPMedia
     Private cLvwSort As ListViewSort
@@ -30,9 +31,10 @@ Public Class Form1
     Dim oldselectedindex As Integer = -1
     Dim playlistcombolist As New List(Of CBPlaylistClass)
     Public Event nextTrack(ByVal nextTrack As mp3Class)
+
     Dim ips As String() = {"180.97.178.211", "180.97.178.61", "58.220.6.81", "180.97.178.212", "180.97.180.93", "180.97.180.91", "180.97.180.92", "58.220.6.80", "180.97.178.60", "180.97.178.59", "58.220.39.89", "58.220.43.55", "58.220.6.82", "218.64.94.53", "113.17.140.176", "59.108.137.202", "59.108.137.204", "59.108.137.203", "60.207.246.103", "60.207.246.101", "59.108.137.201", "183.136.208.39", "115.231.132.70", "119.84.111.82", "119.84.86.37", "117.23.2.80", "117.23.51.72", "117.23.54.67", "117.23.51.73", "117.23.54.68", "117.23.2.79", "222.216.188.92", "61.138.219.42", "115.231.87.131", "115.231.82.104", "115.231.84.168", "115.231.84.167", "115.231.82.106", "115.231.87.130", "115.231.82.100", "115.231.82.105", "218.93.206.56", "218.93.206.57", "218.75.225.190", "218.75.225.60", "218.75.225.57", "61.134.46.44", "222.246.232.157", "221.229.167.44", "58.218.208.202", "58.218.208.39", "61.136.167.71", "220.165.142.79", "61.136.211.34", "220.169.243.174", "218.92.209.69", "218.92.209.73", "218.92.209.70", "218.92.226.86", "183.134.16.88", "183.134.20.72", "183.134.12.74", "183.134.11.85", "183.134.16.89", "183.134.24.76", "183.134.10.82", "183.134.16.87", "183.134.16.90", "183.134.20.73", "183.134.20.74", "183.134.9.62", "183.134.11.83", "183.134.12.72", "183.134.16.91", "115.153.176.76", "218.76.79.128", "221.235.205.200", "59.45.42.43", "125.91.249.26", "218.77.2.85", "58.221.78.109", "58.221.78.70", "61.188.191.90", "180.97.211.37", "222.186.132.74", "180.97.211.53", "219.149.47.34", "59.44.209.184", "59.47.50.33", "220.162.97.229", "183.131.116.54", "183.131.119.90", "183.131.116.57", "115.231.158.73", "183.131.116.58", "115.231.156.75", "183.131.116.56", "183.131.116.55", "115.231.158.74", "218.242.103.104", "218.242.103.102", "211.144.81.26", "211.144.81.28", "218.242.103.105", "218.242.103.103", "211.144.81.25", "211.144.81.27", "182.40.30.18", "222.218.45.207", "222.218.45.214", "182.140.142.158", "182.140.147.56", "182.140.218.59", "182.140.218.60", "182.140.231.59", "222.84.167.53", "222.84.167.52", "117.21.204.75", "117.21.204.76", "222.243.110.58", "125.90.204.50", "125.90.204.96", "60.174.241.86", "60.174.243.185", "58.222.19.41", "58.222.19.42", "219.138.28.40", "219.138.21.62", "219.138.27.66", "61.183.53.82", "14.215.93.37", "219.128.78.71", "121.9.222.53", "121.9.222.54", "219.145.171.184", "182.132.33.42", "220.167.102.24", "14.215.9.79", "14.215.9.80", "183.61.67.42", "183.61.67.87", "113.107.57.42", "122.228.6.64", "122.228.94.65", "183.131.168.144", "122.228.94.73", "122.228.6.67", "122.228.94.64", "183.131.208.53", "183.131.168.135", "183.131.168.134", "122.228.94.183", "222.170.95.35", "59.56.26.47", "117.27.243.110", "117.27.245.60", "117.27.241.104", "117.27.241.103", "117.27.245.78", "124.116.133.42", "36.42.32.66", "117.21.168.85", "122.225.28.140", "115.231.171.46", "115.231.171.47", "115.231.171.48", "115.231.171.49", "221.235.187.54", "221.235.187.51", "61.184.116.82", "61.184.116.83", "58.51.241.33", "223.151.245.44", "223.151.245.42", "113.107.112.212", "115.231.22.76", "115.231.30.107", "115.231.30.106", "115.231.22.77", "115.231.30.105", "115.231.20.47", "115.231.20.48", "115.231.22.75", "58.216.21.97", "61.160.209.74", "61.160.209.76", "58.216.22.214", "58.216.21.100", "58.216.21.99", "42.81.5.144", "42.81.9.50", "61.184.249.41", "61.184.249.40", "182.34.127.89", "124.161.229.68", "124.161.229.69", "124.161.224.43", "124.161.224.44", "221.206.120.67", "221.206.124.46", "218.60.132.33", "153.36.110.59", "113.207.77.60", "113.207.77.58", "113.207.80.48", "113.207.80.47", "113.207.77.61", "113.207.72.68", "124.167.236.86", "124.167.236.85", "124.167.222.40", "124.167.232.95", "220.194.200.229", "220.194.203.62", "60.5.252.75", "60.5.255.37", "60.5.255.28", "101.26.37.114", "60.5.252.74", "36.250.74.14", "36.250.76.208", "121.17.124.25", "60.220.196.248", "175.154.189.32", "175.154.189.31", "175.154.189.48", "113.5.251.95", "221.208.158.219", "113.5.251.94", "113.5.251.96", "61.167.54.107", "61.167.54.104", "218.59.186.252", "218.59.186.253", "122.143.27.241", "122.143.27.152", "122.143.23.44", "124.165.216.190", "124.165.216.189", "124.165.216.253", "60.222.223.55", "60.222.223.63", "220.194.207.94", "220.194.207.99", "42.48.1.72", "42.48.1.73", "110.53.75.46", "58.20.164.52", "110.53.75.45", "110.53.72.57", "58.20.197.66", "58.20.197.64", "58.20.197.61", "58.20.197.65", "183.95.189.35", "58.20.139.51", "58.20.139.52", "124.95.147.29", "36.250.93.46", "36.250.93.47", "218.58.222.94", "218.58.222.93", "113.5.170.36", "113.5.80.41", "113.5.80.40", "121.18.230.10", "121.18.230.88", "121.18.230.89", "60.8.123.159", "122.136.46.96", "218.60.109.76", "124.164.8.68", "124.164.8.67", "124.164.245.162", "122.143.76.32", "218.26.67.78", "218.26.67.76", "218.26.75.211", "121.22.252.52", "121.22.252.51", "110.18.247.56", "110.18.246.31", "60.221.254.223", "60.221.222.25", "111.1.59.55", "112.17.2.98", "112.17.2.95", "112.17.2.97", "112.17.2.179", "112.17.2.207", "117.144.230.115", "120.192.87.87", "120.209.141.82", "117.172.21.86", "117.172.21.88", "117.172.21.87", "112.25.35.34", "183.207.229.19", "183.207.229.17", "124.14.17.225", "124.14.17.223", "124.14.17.228", "124.14.7.54", "124.14.7.53", "124.14.7.55", "211.162.48.55", "211.162.48.57", "211.162.55.7", "211.162.58.57", "211.162.48.56", "222.42.4.191", "222.42.4.110", "159.226.225.150", "101.100.190.113", "61.200.88.54", "61.200.88.55", "61.90.241.27", "122.155.238.57", "124.40.233.189", "180.180.248.184", "198.47.104.133", "198.47.104.134"}
     Dim proxy As new List(Of WebProxy)
-    Private WithEvents _Hotkey As New Hotkey
+
 
     'Private Const KEYEVENTF_EXTENDEDKEY As Long = &H1
     'Private Const KEYEVENTF_KEYUP As Long = &H2
@@ -169,7 +171,7 @@ Public Class Form1
         If Not Directory.Exists(Application.StartupPath & "\offline") Then
             Directory.CreateDirectory(Application.StartupPath & "\offline")
         End If
-
+        readPlaylist(playlistfile)
         _Hotkey.TryRegister(Keys.MediaNextTrack)
         _Hotkey.TryRegister(Keys.MediaPlayPause)
         _Hotkey.TryRegister(Keys.MediaPreviousTrack)
@@ -328,7 +330,64 @@ Public Class Form1
             ' MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub AddSongsByIDOnly(ByVal ID As String)
+        Try
 
+            Dim webClient As New System.Net.WebClient
+            Dim result As String = webClient.DownloadString("http://music.163.com/api/song/detail?ids=[" & ID & "]")
+            Dim resultsongs = Linq.JObject.Parse(result)
+            Dim mynewSongs As Linq.JToken = resultsongs.Item("songs")
+
+
+            getSongInfo.Clear()
+            lvw_Songs.Items.Clear()
+
+
+            For Each songi In mynewSongs.Children
+                Dim getSongArtists As New List(Of String)
+
+                '   Dim at As Linq.JToken = resultsongs.Item("songs").Item("artists")
+                Dim at As Linq.JToken = songi.Item("artists")
+
+                For Each artist In at
+                    getSongArtists.Add(Unicode2UTF8(artist.Item("name").ToString))
+                Next
+
+                Dim hM As mp3Class = Nothing
+                Dim mM As mp3Class = Nothing
+                Dim lM As mp3Class = Nothing
+                Dim bM As mp3Class = Nothing
+
+                If songi.Item("hMusic").HasValues Then
+                    hM = New mp3Class(songi.Item("id").ToString, Unicode2UTF8(songi.Item("name").ToString), getSongArtists, Unicode2UTF8(songi.Item("album")("name").ToString), songi.Item("duration").ToString, songi.Item("mp3Url").ToString, songi.Item("hMusic")("id").ToString, Unicode2UTF8(songi.Item("hMusic")("name").ToString), songi.Item("hMusic")("size").ToString, songi.Item("hMusic")("extension").ToString, songi.Item("hMusic")("dfsId").ToString, songi.Item("hMusic")("playTime").ToString, songi.Item("hMusic")("bitrate").ToString, songi.Item("hMusic")("sr").ToString, songi.Item("mvid").ToString)
+                End If
+                If songi.Item("mMusic").HasValues Then
+                    mM = New mp3Class(songi.Item("id").ToString, Unicode2UTF8(songi.Item("name").ToString), getSongArtists, Unicode2UTF8(songi.Item("album")("name").ToString), songi.Item("duration").ToString, songi.Item("mp3Url").ToString, songi.Item("mMusic")("id").ToString, Unicode2UTF8(songi.Item("mMusic")("name").ToString), songi.Item("mMusic")("size").ToString, songi.Item("mMusic")("extension").ToString, songi.Item("mMusic")("dfsId").ToString, songi.Item("mMusic")("playTime").ToString, songi.Item("mMusic")("bitrate").ToString, songi.Item("mMusic")("sr").ToString, songi.Item("mvid").ToString)
+                End If
+                If songi.Item("lMusic").HasValues Then
+                    lM = New mp3Class(songi.Item("id").ToString, Unicode2UTF8(songi.Item("name").ToString), getSongArtists, Unicode2UTF8(songi.Item("album")("name").ToString), songi.Item("duration").ToString, songi.Item("mp3Url").ToString, songi.Item("lMusic")("id").ToString, Unicode2UTF8(songi.Item("lMusic")("name").ToString), songi.Item("lMusic")("size").ToString, songi.Item("lMusic")("extension").ToString, songi.Item("lMusic")("dfsId").ToString, songi.Item("lMusic")("playTime").ToString, songi.Item("lMusic")("bitrate").ToString, songi.Item("lMusic")("sr").ToString, songi.Item("mvid").ToString)
+                End If
+                If songi.Item("bMusic").HasValues Then
+                    bM = New mp3Class(songi.Item("id").ToString, Unicode2UTF8(songi.Item("name").ToString), getSongArtists, Unicode2UTF8(songi.Item("album")("name").ToString), songi.Item("duration").ToString, songi.Item("mp3Url").ToString, songi.Item("bMusic")("id").ToString, Unicode2UTF8(songi.Item("bMusic")("name").ToString), songi.Item("bMusic")("size").ToString, songi.Item("bMusic")("extension").ToString, songi.Item("bMusic")("dfsId").ToString, songi.Item("bMusic")("playTime").ToString, songi.Item("bMusic")("bitrate").ToString, songi.Item("bMusic")("sr").ToString, songi.Item("mvid").ToString)
+                End If
+                'songi.Item("album")("name").ToString
+                getSongInfo.Add(New SongClass(songi.Item("id").ToString, Unicode2UTF8(songi.Item("name").ToString), getSongArtists, Unicode2UTF8(songi.Item("album")("name").ToString), songi.Item("duration").ToString, songi.Item("mp3Url").ToString,
+                                             hM,
+                                             mM,
+                                              lM,
+                                              bM,
+                                                   songi.Item("mvid").ToString))
+
+            Next
+
+            For Each foundSound In getSongInfo
+                addMusictoPlaylist(foundSound)
+            Next
+
+        Catch ex As Exception
+            ' MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub startQuery()
         Dim t As New Threading.Thread(AddressOf doQuery)
         t.IsBackground = True
@@ -410,10 +469,10 @@ Public Class Form1
         Return Nothing
     End Function
 
-    Public Sub addMusicbySpotify(ByVal newsongclass As SongClass)
+    Public Sub addMusictoPlaylist(ByVal newsongclass As SongClass)
         songC = newsongclass
         songH = getBestMusic(songC)
-        songURL = songC.getSongMP3URL.Replace("m2.", "198.47.104.134/m1.")
+        songURL = songC.getSongMP3URL '.Replace("m2.", "198.47.104.134/m1.")
         songName = songC.getSongName
 
         If File.Exists(Application.StartupPath & "\offline\" & songC.getSongID & "." & songH.getSongExtension) Then
@@ -432,27 +491,7 @@ Public Class Form1
             AxWindowsMediaPlayer1.currentPlaylist = newPlayList
             '  AxWindowsMediaPlayer1.currentPlaylist.appendItem(songURL)
             lb_playlist.SelectedIndex = AxWindowsMediaPlayer1.currentPlaylist.count - 1
-            '    Dim Media As WMPLib.IWMPMedia = AxWindowsMediaPlayer1.currentPlaylist.Item(AxWindowsMediaPlayer1.currentPlaylist.count - 1)
 
-            '   AxWindowsMediaPlayer1.Ctlcontrols.playItem(Media)
-            'Else
-            '    For i As Integer = 0 To myPlaylist.Count - 1
-            '        If AxWindowsMediaPlayer1.currentPlaylist.Item(i).sourceURL = Application.StartupPath & "\offline\" & songC.getSongID & "." & songH.getSongExtension Then
-
-            '            Dim Media As WMPLib.IWMPMedia = AxWindowsMediaPlayer1.currentPlaylist.Item(i)
-            '            AxWindowsMediaPlayer1.Ctlcontrols.playItem(Media)
-            '            'If Not oldselectedindex = i Then
-            '            '    flp_infoMusic.Controls.Clear()
-            '            '    Dim gi As New Threading.Thread(AddressOf gatherMusicInformationforGB)
-            '            '    gi.IsBackground = True
-            '            '    gi.Start(i)
-            '            '    oldselectedindex = i
-            '            'End If
-            '            Exit For
-
-            '        End If
-
-            '    Next
         End If
 
     End Sub
@@ -464,7 +503,7 @@ Public Class Form1
 
             songC = getSongInfobyID(CType(lvw_Songs.Items(lvw_Songs.SelectedIndices(0)).Tag, String))
             songH = getBestMusic(songC)
-            songURL = songC.getSongMP3URL.Replace("m2.", "198.47.104.134/m1.")
+            songURL = songC.getSongMP3URL '.Replace("m2.", "198.47.104.134/m1.")
             songName = songC.getSongName
 
             If File.Exists(Application.StartupPath & "\offline\" & songC.getSongID & "." & songH.getSongExtension) Then
@@ -492,13 +531,7 @@ Public Class Form1
 
                         Dim Media As WMPLib.IWMPMedia = AxWindowsMediaPlayer1.currentPlaylist.Item(i)
                         AxWindowsMediaPlayer1.Ctlcontrols.playItem(Media)
-                        'If Not oldselectedindex = i Then
-                        '    flp_infoMusic.Controls.Clear()
-                        '    Dim gi As New Threading.Thread(AddressOf gatherMusicInformationforGB)
-                        '    gi.IsBackground = True
-                        '    gi.Start(i)
-                        '    oldselectedindex = i
-                        'End If
+
                         Exit For
 
                     End If
@@ -714,56 +747,59 @@ Public Class Form1
     End Sub
 
     Private Sub readPlaylist(ByVal playlistfilepath As String)
-        Dim reader As StreamReader = My.Computer.FileSystem.OpenTextFileReader(playlistfilepath, Encoding.UTF8)
-        myPlaylist.Clear()
-        lb_playlist.Items.Clear()
-        newPlayList.clear()
-        Dim fi As New FileInfo(playlistfilepath)
-        If fi.Length < 20 Then Exit Sub
+        If File.Exists(playlistfilepath) Then
 
-        Dim a As String
-        Dim sep As String = "+*;*+"
-        Do
-            a = reader.ReadLine
-            Dim pl As String() = Strings.Split(a, sep)
-            If pl.Length < 2 Then Exit Do
 
-            Dim at As String() = Strings.Split(pl(2), ",")
-            Dim atl As List(Of String) = at.ToList
+            Dim reader As StreamReader = My.Computer.FileSystem.OpenTextFileReader(playlistfilepath, Encoding.UTF8)
+            myPlaylist.Clear()
+            lb_playlist.Items.Clear()
+            newPlayList.clear()
+            Dim fi As New FileInfo(playlistfilepath)
+            If fi.Length < 20 Then Exit Sub
 
-            myPlaylist.Add(New mp3Class(pl(0), pl(1), atl, pl(3), pl(4), Nothing, pl(5), pl(6), pl(7), pl(8), pl(9), pl(10), pl(11), pl(12), pl(13)))
-            lb_playlist.Items.Add(pl(1))
+            Dim a As String
+            Dim sep As String = "+*;*+"
+            Do
+                a = reader.ReadLine
+                Dim pl As String() = Strings.Split(a, sep)
+                If pl.Length < 2 Then Exit Do
 
-            ' Code here
-            '
-        Loop Until a Is Nothing
+                Dim at As String() = Strings.Split(pl(2), ",")
+                Dim atl As List(Of String) = at.ToList
 
-        reader.Close()
-        For Each pli In myPlaylist
-            Dim myfile As String = Application.StartupPath & "\offline\" & pli.getSongMainID & "." & pli.getSongExtension
-            If File.Exists(myfile) Then
-                Dim myFileInfo As New FileInfo(myfile)
-                Dim sizeInBytes As Long = myFileInfo.Length
-                If sizeInBytes = Long.Parse(pli.getSongSize) Then
-                    newPlayList.appendItem(AxWindowsMediaPlayer1.newMedia(myfile))
-                    AxWindowsMediaPlayer1.currentPlaylist = newPlayList
+                myPlaylist.Add(New mp3Class(pl(0), pl(1), atl, pl(3), pl(4), Nothing, pl(5), pl(6), pl(7), pl(8), pl(9), pl(10), pl(11), pl(12), pl(13)))
+                lb_playlist.Items.Add(pl(1))
+
+                ' Code here
+                '
+            Loop Until a Is Nothing
+
+            reader.Close()
+            For Each pli In myPlaylist
+                Dim myfile As String = Application.StartupPath & "\offline\" & pli.getSongMainID & "." & pli.getSongExtension
+                If File.Exists(myfile) Then
+                    Dim myFileInfo As New FileInfo(myfile)
+                    Dim sizeInBytes As Long = myFileInfo.Length
+                    If sizeInBytes = Long.Parse(pli.getSongSize) Then
+                        newPlayList.appendItem(AxWindowsMediaPlayer1.newMedia(myfile))
+                        AxWindowsMediaPlayer1.currentPlaylist = newPlayList
+                    Else
+                        Dim decryptedStr As String = decryptID(pli.getSongdfsID)
+                        newPlayList.appendItem(AxWindowsMediaPlayer1.newMedia("http://" & RandomIP() & "m1.music.126.net/" & decryptedStr & "/" & pli.getSongdfsID & "." & pli.getSongExtension))
+                        AxWindowsMediaPlayer1.currentPlaylist = newPlayList
+                    End If
+
                 Else
                     Dim decryptedStr As String = decryptID(pli.getSongdfsID)
                     newPlayList.appendItem(AxWindowsMediaPlayer1.newMedia("http://" & RandomIP() & "m1.music.126.net/" & decryptedStr & "/" & pli.getSongdfsID & "." & pli.getSongExtension))
                     AxWindowsMediaPlayer1.currentPlaylist = newPlayList
                 End If
 
-            Else
-                Dim decryptedStr As String = decryptID(pli.getSongdfsID)
-                newPlayList.appendItem(AxWindowsMediaPlayer1.newMedia("http://" & RandomIP() & "m1.music.126.net/" & decryptedStr & "/" & pli.getSongdfsID & "." & pli.getSongExtension))
-                AxWindowsMediaPlayer1.currentPlaylist = newPlayList
-            End If
+                'lb_playlist.SelectedIndex = AxWindowsMediaPlayer1.currentPlaylist.count - 1
+                '  Dim Media As WMPLib.IWMPMedia = AxWindowsMediaPlayer1.currentPlaylist.Item(AxWindowsMediaPlayer1.currentPlaylist.count - 1)
+            Next
 
-            'lb_playlist.SelectedIndex = AxWindowsMediaPlayer1.currentPlaylist.count - 1
-            '  Dim Media As WMPLib.IWMPMedia = AxWindowsMediaPlayer1.currentPlaylist.Item(AxWindowsMediaPlayer1.currentPlaylist.count - 1)
-        Next
-
-
+        End If
 
     End Sub
 
@@ -1048,7 +1084,8 @@ Public Class Form1
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
         Dim sf As New Form_SpotifyRip(myPlaylist)
 
-        AddHandler sf.newSongClassArrived, AddressOf addMusicbySpotify
+        AddHandler sf.newSongClassArrived, AddressOf addMusictoPlaylist
+
         sf.Show()
 
     End Sub
@@ -1123,9 +1160,42 @@ Public Class Form1
 
     Private Sub AxWindowsMediaPlayer1_PlayStateChange(sender As Object, e As _WMPOCXEvents_PlayStateChangeEvent) Handles AxWindowsMediaPlayer1.PlayStateChange
         refreshMediaItems()
+        If chb_repeatplaylist.Checked Then
+            If AxWindowsMediaPlayer1.playState = WMPPlayState.wmppsMediaEnded Then
+                AxWindowsMediaPlayer1.Ctlcontrols.play()
+            End If
+        End If
     End Sub
 
+    Private Sub readdfromcache()
+        btn_readdfromcache.Enabled = False
+        Dim mf As String() = Directory.GetFiles(Application.StartupPath & "\offline", "*.mp3", SearchOption.TopDirectoryOnly)
+        Dim combinedfilenames As New List(Of String)
+        Dim currentPlaylistIDs As New List(Of String)
+
+
+
+        For Each song In myPlaylist
+            currentPlaylistIDs.Add(song.getSongMainID)
+        Next
+
+        For Each file As String In mf
+
+            If Not currentPlaylistIDs.Contains(Path.GetFileNameWithoutExtension(file)) Then
+                combinedfilenames.Add(Path.GetFileNameWithoutExtension(file))
+
+            End If
+        Next
+
+
+        AddSongsByIDOnly(String.Join(",", combinedfilenames))
+        btn_readdfromcache.Enabled = True
+
+    End Sub
     Private Sub btn_readdfromcache_Click(sender As Object, e As EventArgs) Handles btn_readdfromcache.Click
+        Dim rafc As New Threading.Thread(AddressOf readdfromcache)
+        rafc.IsBackground = True
+        rafc.Start()
 
     End Sub
 
@@ -1151,4 +1221,20 @@ Public Class Form1
 
         End Select
     End Sub
+
+
+
+
+
+
+
+    'Private Sub chb_repeatplaylist_CheckStateChanged(sender As Object, e As EventArgs) Handles chb_repeatplaylist.CheckStateChanged
+    '    If chb_repeatplaylist.Checked Then
+    '        AxWindowsMediaPlayer1.settings.setMode("loop", True)
+    '    Else
+    '        AxWindowsMediaPlayer1.settings.setMode("loop", False)
+    '    End If
+
+
+    'End Sub
 End Class

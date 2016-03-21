@@ -60,6 +60,12 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Sidebar-Music-icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSCore, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CSCore.1.0.0.0\lib\net35-client\CSCore.dll</HintPath>
@@ -67,6 +73,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SpotifyAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpotifyAPI-NET.2.6.0\lib\SpotifyAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -94,6 +104,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CBPlaylistClass.vb" />
     <Compile Include="clsListViewSort.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -102,7 +113,27 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form_SpotifyRip.Designer.vb">
+      <DependentUpon>Form_SpotifyRip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SpotifyRip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helper.vb" />
+    <Compile Include="Hotkey.vb" />
+    <Compile Include="MiniPlayer.Designer.vb">
+      <DependentUpon>MiniPlayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MiniPlayer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mp3Class.vb" />
+    <Compile Include="MusicVideoForm.Designer.vb">
+      <DependentUpon>MusicVideoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MusicVideoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -120,10 +151,20 @@
     </Compile>
     <Compile Include="SongClass.vb" />
     <Compile Include="SongSearchClass.vb" />
+    <Compile Include="videoClass.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SpotifyRip.resx">
+      <DependentUpon>Form_SpotifyRip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiniPlayer.resx">
+      <DependentUpon>MiniPlayer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusicVideoForm.resx">
+      <DependentUpon>MusicVideoForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -133,6 +174,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -175,6 +217,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sidebar-Music-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
